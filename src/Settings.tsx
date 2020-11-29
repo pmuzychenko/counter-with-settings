@@ -4,6 +4,8 @@ import './App.css';
 type PropsType = {
     maxValueTitle: string
     startValueTitle: string
+    maxValue: number
+    minValue: number
 }
 
 function Settings(props: PropsType) {
@@ -11,11 +13,11 @@ function Settings(props: PropsType) {
         <div className="settings">
             <div className={"maxValue"}>
                 <span> {props.maxValueTitle} </span>
-                <input type="number"/>
+                <input type="number" value={props.maxValue}/>
             </div>
             <div className={"startValue"}>
                 <span>{props.startValueTitle} </span>
-                <input type="number"/>
+                <input type="number" value={props.minValue}/>
             </div>
         </div>
     );
