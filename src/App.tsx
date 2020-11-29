@@ -53,6 +53,10 @@ function App() {
         setCounter(minValue)
         setIncDisabled(false)
         setResetDisabled(false)
+
+        // Setting data into local storage
+        localStorage.setItem('minValue', minValue.toString())
+        localStorage.setItem('maxValue', maxValue.toString())
     }
 
     const increment = () => {
