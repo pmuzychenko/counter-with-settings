@@ -3,12 +3,13 @@ import './App.css';
 
 type PropsType = {
     title: string
+    disabled: boolean
 }
 
 function Button(props: PropsType) {
     return (
         <div>
-            <button>{props.title}</button>
+            <button disabled={props.disabled}>{props.title}</button>
         </div>
     );
 }

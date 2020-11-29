@@ -12,6 +12,10 @@ function App() {
     let [maxValue, setMaxValue] = useState<number>(5)
     let [minValue, setMinValue] = useState<number>(0)
 
+    let [settingsButtonDisabled, setSettingsButtonDisabled] = useState<boolean>(true)
+
+
+
     const changeMaxValue = ( value: number) => {
         setMaxValue(value)
     }
@@ -30,7 +34,10 @@ function App() {
                       changeMinValue={changeMinValue}
 
             />
-            <Button title={'set'}/>
+            <Button title={'set'}
+                    disabled={settingsButtonDisabled}
+
+            />
         </div>
     );
 }
