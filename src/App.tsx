@@ -9,9 +9,13 @@ function App() {
     //Setting global data
     const maxValueTitle: string = 'max-value:'
     const startValueTitle: string = 'start-value:'
+    const settingsMes: string = 'Enter values and press SET'
+    const errorMes: string = 'Incorrect Value!'
 
+    let [error, setError] = useState<string>('')
     let [maxValue, setMaxValue] = useState<number>(5)
     let [minValue, setMinValue] = useState<number>(0)
+    let current = minValue
 
     let [settingsButtonDisabled, setSettingsButtonDisabled] = useState<boolean>(true)
 
@@ -19,11 +23,51 @@ function App() {
     let [incDisabled, setIncDisabled] = useState<boolean>(true)
     let [resetDisabled, setResetDisabled] = useState<boolean>(true)
 
-    const changeMaxValue = (value: number) => {
-        setMaxValue(value)
+    const changeMaxValue = (maxValue: number) => {
+
+        if (maxValue <= minValue) {
+            setError(errorMes)
+            setSettingsButtonDisabled(true)
+        } else {
+            setSettingsButtonDisabled(false)
+            setError(settingsMes)
+        }
+        setMaxValue(maxValue)
     }
-    const changeMinValue = (value: number) => {
-        setMinValue(value)
+
+    const changeMinValue = (minValue: number) => {
+        if (minValue < 0 || minValue >= maxValue) {
+            setError(errorMes)
+            setSettingsButtonDisabled(true)
+
+        } else {
+            setSettingsButtonDisabled(false)
+            setError(settingsMes)
+        }
+        setMinValue(minValue)
+    }
+
+    const set = () => {
+        setError('')
+        setSettingsButtonDisabled(true)
+        setCounter(minValue)
+        setIncDisabled(false)
+        setResetDisabled(false)
+    }
+
+    const increment = () => {
+        current = counter + 1
+        setCounter(current)
+
+        if (current === maxValue) {
+            setIncDisabled(true)
+            setResetDisabled(false)
+        }
+    }
+
+    const reset = () => {
+        setCounter(minValue)
+        setIncDisabled(false)
     }
 
 
@@ -41,6 +85,7 @@ function App() {
                 <div className="buttons">
                     <Button title={'set'}
                             disabled={settingsButtonDisabled}
+                            execFunc={set}
                     />
                 </div>
             </div>
@@ -48,12 +93,13 @@ function App() {
                 <Counter counter={counter}
                          maxValue={maxValue}
                          minValue={minValue}
+                         error={error}
 
                 />
-            <div className="buttons">
-                <Button title={'inc'} disabled={incDisabled}/>
-                <Button title={'reset'} disabled={resetDisabled}/>
-            </div>
+                <div className="buttons">
+                    <Button title={'inc'} disabled={incDisabled} execFunc={increment}/>
+                    <Button title={'reset'} disabled={resetDisabled} execFunc={reset}/>
+                </div>
             </div>
 
         </div>

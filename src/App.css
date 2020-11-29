@@ -76,3 +76,21 @@ body {
   padding: 0;
   font-size: 28px;
 }
+
+.counter .maxNumber {
+  color: red;
+  font-size: 58px;
+}
+
+.counter .defaultNumber {
+  color: cadetblue;
+  font-size: 58px;
+}
+
+.error {
+  color: red;
+}
+
+.default {
+  color: cadetblue
+}
