@@ -1,96 +1,98 @@
 body {
-  background-color: #2d3436;
+    background-color: #2d3436;
 }
+
 .App {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .settingsBlock,
 .counterBlock {
-  margin: 100px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 500px;
-  height: 400px;
-  background-color: #2d3436;
-  border-radius: 15px;
-  border: 5px solid cadetblue;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 500px;
+    height: 400px;
+    background-color: #2d3436;
+    border-radius: 15px;
+    border: 5px solid cadetblue;
 }
+
 .settings {
-  border: 5px solid cadetblue;
-  width: 450px;
-  height: 180px;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  font-size: 28px;
-  font-weight: 800;
-  color: cadetblue;
+    border: 5px solid cadetblue;
+    width: 450px;
+    height: 180px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: cadetblue;
 }
 
 .maxValue,
 .startValue {
-  width: 410px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+    width: 410px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .buttons {
-  border: 5px solid cadetblue;
-  width: 450px;
-  height: 140px;
-  border-radius: 15px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+    border: 5px solid cadetblue;
+    width: 450px;
+    height: 140px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .buttons button {
-  font-size: 32px;
-  font-weight: 700;
-  background-color: cadetblue;
-  border-radius: 10px;
-  outline: cadetblue;
+    font-size: 32px;
+    font-weight: 700;
+    background-color: cadetblue;
+    border-radius: 10px;
+    outline: cadetblue;
 }
 
 .counter {
-  border: 5px solid cadetblue;
-  width: 450px;
-  border-radius: 15px;
-  display: flex;
-  align-items: center;
-  height: 180px;
-  justify-content: center;
+    border: 5px solid cadetblue;
+    width: 450px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    height: 180px;
+    justify-content: center;
 }
 
 .counter h3 {
-  margin: 0;
-  padding: 0;
-  font-size: 28px;
+    margin: 0;
+    padding: 0;
+    font-size: 28px;
 }
 
 .counter .maxNumber {
-  color: red;
-  font-size: 58px;
+    color: red;
+    font-size: 58px;
 }
 
 .counter .defaultNumber {
-  color: cadetblue;
-  font-size: 58px;
+    color: cadetblue;
+    font-size: 58px;
 }
 
 .error {
-  color: red;
+    color: red;
 }
 
 .default {
-  color: cadetblue
+    color: cadetblue
 }

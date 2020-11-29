@@ -11,7 +11,9 @@ function Button(props: PropsType) {
     return (
         <div>
             <button disabled={props.disabled}
-                    onClick={() => {props.execFunc()}}
+                    onClick={() => {
+                        props.execFunc()
+                    }}
             >{props.title}</button>
         </div>
     );

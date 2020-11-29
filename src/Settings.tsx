@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChangeEvent } from 'react';
+import {ChangeEvent} from 'react';
 import './App.css';
 
 type PropsType = {
@@ -13,10 +13,10 @@ type PropsType = {
 
 function Settings(props: PropsType) {
 
-    const setMaxValue = (e:ChangeEvent<HTMLInputElement>) => {
+    const setMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
         props.changeMaxValue(+e.currentTarget.value)
     }
-    const setMinValue = (e:ChangeEvent<HTMLInputElement>) => {
+    const setMinValue = (e: ChangeEvent<HTMLInputElement>) => {
         props.changeMinValue(+e.currentTarget.value)
     }
 
