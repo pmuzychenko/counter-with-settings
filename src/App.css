@@ -41,3 +41,21 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+.buttons {
+  border: 5px solid cadetblue;
+  width: 450px;
+  height: 140px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttons button {
+  font-size: 32px;
+  font-weight: 700;
+  background-color: cadetblue;
+  border-radius: 10px;
+  outline: cadetblue;
+}
