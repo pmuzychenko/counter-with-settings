@@ -7,7 +7,8 @@ body {
   align-items: center;
 }
 
-.settingsBlock {
+.settingsBlock,
+.counterBlock {
   margin: 100px auto;
   display: flex;
   flex-direction: column;
@@ -58,4 +59,20 @@ body {
   background-color: cadetblue;
   border-radius: 10px;
   outline: cadetblue;
+}
+
+.counter {
+  border: 5px solid cadetblue;
+  width: 450px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  height: 180px;
+  justify-content: center;
+}
+
+.counter h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 28px;
 }

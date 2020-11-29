@@ -11,7 +11,7 @@ type PropsType = {
 function Counter(props: PropsType) {
     return (
         <div className="counter">
-
+            <h3>{props.counter}</h3>
         </div>
     );
 }
