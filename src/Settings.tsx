@@ -1,16 +1,21 @@
 import React from 'react';
 import './App.css';
 
-function Settings() {
+type PropsType = {
+    maxValueTitle: string
+    startValueTitle: string
+}
+
+function Settings(props: PropsType) {
     return (
         <div className="settings">
             <div className={"maxValue"}>
-                <span></span>
-                <input type="number" />
+                <span> {props.maxValueTitle} </span>
+                <input type="number"/>
             </div>
             <div className={"startValue"}>
-                <span></span>
-                <input type="number" />
+                <span>{props.startValueTitle} </span>
+                <input type="number"/>
             </div>
         </div>
     );

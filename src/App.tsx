@@ -4,10 +4,17 @@ import Button from './Button';
 import Settings from "./Settings";
 
 function App() {
+    //Setting global data
+    const maxValueTitle: string = 'max-value:'
+    const startValueTitle: string = 'start-value:'
+
     return (
         <div className="App">
-            <Settings/>
-            <Button />
+            <Settings maxValueTitle={maxValueTitle}
+                      startValueTitle={startValueTitle}
+
+            />
+            <Button title={'set'}/>
         </div>
     );
 }

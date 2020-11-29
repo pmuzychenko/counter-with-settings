@@ -1,10 +1,14 @@
 import React from 'react';
 import './App.css';
 
-function Button() {
+type PropsType = {
+    title: string
+}
+
+function Button(props: PropsType) {
     return (
         <div>
-            <button>SET</button>
+            <button>{props.title}</button>
         </div>
     );
 }
