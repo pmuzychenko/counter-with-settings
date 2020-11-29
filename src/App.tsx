@@ -26,18 +26,22 @@ function App() {
 
     return (
         <div className="App">
-            <Settings maxValueTitle={maxValueTitle}
-                      startValueTitle={startValueTitle}
-                      maxValue={maxValue}
-                      minValue={minValue}
-                      changeMaxValue={changeMaxValue}
-                      changeMinValue={changeMinValue}
+            <div className="settingsBlock">
+                <Settings maxValueTitle={maxValueTitle}
+                          startValueTitle={startValueTitle}
+                          maxValue={maxValue}
+                          minValue={minValue}
+                          changeMaxValue={changeMaxValue}
+                          changeMinValue={changeMinValue}
 
-            />
-            <Button title={'set'}
-                    disabled={settingsButtonDisabled}
+                />
+                <div className="buttons">
+                    <Button title={'set'}
+                            disabled={settingsButtonDisabled}
+                    />
+                </div>
+            </div>
 
-            />
         </div>
     );
 }
