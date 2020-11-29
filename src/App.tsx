@@ -1,8 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+import {useState} from 'react';
 import './App.css';
 import Button from './Button';
 import Settings from "./Settings";
+import Counter from "./Counter";
 
 function App() {
     //Setting global data
@@ -14,12 +15,13 @@ function App() {
 
     let [settingsButtonDisabled, setSettingsButtonDisabled] = useState<boolean>(true)
 
+    let [counter, setCounter] = useState<number>(0)
 
 
-    const changeMaxValue = ( value: number) => {
+    const changeMaxValue = (value: number) => {
         setMaxValue(value)
     }
-    const changeMinValue = ( value: number) => {
+    const changeMinValue = (value: number) => {
         setMinValue(value)
     }
 
@@ -41,8 +43,18 @@ function App() {
                     />
                 </div>
             </div>
+            <div className="counterBlock">
+                <Counter counter={counter}
+                         maxValue={maxValue}
+                         minValue={minValue}
 
-        </div>
+                />
+            </div>
+            <div className="buttons">
+
+            </div>
+
+        </>
     );
 }
 
