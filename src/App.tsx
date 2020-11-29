@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useState} from 'react';
 import './App.css';
 import Button from './Button';
@@ -11,18 +11,29 @@ function App() {
     const startValueTitle: string = 'start-value:'
     const settingsMes: string = 'Enter values and press SET'
     const errorMes: string = 'Incorrect Value!'
+    // Using hook useEffect for getting data from local storage
+    useEffect(() => {
+        let min = localStorage.getItem('minValue')
+        let max = localStorage.getItem('maxValue')
+        let current = localStorage.getItem('current')
+        if (min && max && current) {
+            setMinValue(+min)
+            setMaxValue(+max)
+            setCounter(+current)
+        }
+
+    }, [])
 
     let [error, setError] = useState<string>('')
     let [maxValue, setMaxValue] = useState<number>(5)
     let [minValue, setMinValue] = useState<number>(0)
-    let current = minValue
 
     let [settingsButtonDisabled, setSettingsButtonDisabled] = useState<boolean>(true)
 
     let [counter, setCounter] = useState<number>(0)
     let [incDisabled, setIncDisabled] = useState<boolean>(true)
     let [resetDisabled, setResetDisabled] = useState<boolean>(true)
-
+    let current = minValue
     const changeMaxValue = (maxValue: number) => {
 
         if (maxValue <= minValue) {
@@ -61,6 +72,7 @@ function App() {
 
     const increment = () => {
         current = counter + 1
+        localStorage.setItem('current', current.toString())
         setCounter(current)
 
         if (current === maxValue) {
