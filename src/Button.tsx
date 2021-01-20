@@ -7,7 +7,7 @@ type PropsType = {
     execFunc: () => void
 }
 
-function Button(props: PropsType) {
+export const Button = (props: PropsType) => {
     return (
         <div>
             <button disabled={props.disabled}
@@ -18,5 +18,3 @@ function Button(props: PropsType) {
         </div>
     );
 }
-
-export default Button;

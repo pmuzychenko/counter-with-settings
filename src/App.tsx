@@ -1,125 +1,91 @@
 import React, {useEffect} from 'react';
-import {useState} from 'react';
 import './App.css';
-import Button from './Button';
-import Settings from "./Settings";
-import Counter from "./Counter";
+import {Button} from './Button';
+import {Settings} from "./Settings";
+import {Counter} from "./Counter";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    BUTTONS_TITLES,
+    changeMaxValueAC,
+    changeStartValueAC,
+    setCounterAC, setIncButtonAC, setSettingButtonAC
+} from "./bll/reducer";
+import {AppStoreType} from "./bll/store";
 
-function App() {
-    //Setting global data
-    const maxValueTitle: string = 'max-value:'
-    const startValueTitle: string = 'start-value:'
-    const settingsMes: string = 'Enter values and press SET'
-    const errorMes: string = 'Incorrect Value!'
+export const App = () => {
+    let errorValue = useSelector<AppStoreType, string>(state => state.counterState.errorValue)
+    let startValue = useSelector<AppStoreType, number>(state => state.counterState.startValue)
+    let maxValue = useSelector<AppStoreType, number>(state => state.counterState.maxValue)
+    let setButton = useSelector<AppStoreType, boolean>(state => state.counterState.setButton)
+    let counter = useSelector<AppStoreType, number>(state => state.counterState.counter)
+    let incButton = useSelector<AppStoreType, boolean>(state => state.counterState.incButton)
+    let resetButton = useSelector<AppStoreType, boolean>(state => state.counterState.resetButton)
+
+    const dispatch = useDispatch()
+
     // Using hook useEffect for getting data from local storage
     useEffect(() => {
         let min = localStorage.getItem('minValue')
         let max = localStorage.getItem('maxValue')
-        let current = localStorage.getItem('current')
-        if (min && max && current) {
-            setMinValue(+min)
-            setMaxValue(+max)
-            setCounter(+current)
+        if (min && max) {
+            dispatch(changeStartValueAC(+min))
+            dispatch(changeMaxValueAC(+max))
         }
-
     }, [])
 
-    let [error, setError] = useState<string>('')
-    let [maxValue, setMaxValue] = useState<number>(5)
-    let [minValue, setMinValue] = useState<number>(0)
-
-    let [settingsButtonDisabled, setSettingsButtonDisabled] = useState<boolean>(true)
-
-    let [counter, setCounter] = useState<number>(0)
-    let [incDisabled, setIncDisabled] = useState<boolean>(true)
-    let [resetDisabled, setResetDisabled] = useState<boolean>(true)
-    let current = minValue
     const changeMaxValue = (maxValue: number) => {
-
-        if (maxValue <= minValue) {
-            setError(errorMes)
-            setSettingsButtonDisabled(true)
-        } else {
-            setSettingsButtonDisabled(false)
-            setError(settingsMes)
-        }
-        setMaxValue(maxValue)
+        dispatch(changeMaxValueAC(maxValue))
     }
 
-    const changeMinValue = (minValue: number) => {
-        if (minValue < 0 || minValue >= maxValue) {
-            setError(errorMes)
-            setSettingsButtonDisabled(true)
-
-        } else {
-            setSettingsButtonDisabled(false)
-            setError(settingsMes)
-        }
-        setMinValue(minValue)
+    const changeStartValue = (startValue: number) => {
+        dispatch(changeStartValueAC(startValue))
     }
 
-    const set = () => {
-        setError('')
-        setSettingsButtonDisabled(true)
-        setCounter(minValue)
-        setIncDisabled(false)
-        setResetDisabled(false)
-
+    const onSetButtonClick = () => {
+        dispatch(setSettingButtonAC('', true, startValue, false, false))
         // Setting data into local storage
-        localStorage.setItem('minValue', minValue.toString())
+        localStorage.setItem('minValue', startValue.toString())
         localStorage.setItem('maxValue', maxValue.toString())
     }
 
-    const increment = () => {
-        current = counter + 1
-        localStorage.setItem('current', current.toString())
-        setCounter(current)
-
-        if (current === maxValue) {
-            setIncDisabled(true)
-            setResetDisabled(false)
-        }
+    const onIncButtonClick = () => {
+        counter = counter + 1
+        dispatch(setCounterAC(counter))
     }
 
-    const reset = () => {
-        setCounter(minValue)
-        setIncDisabled(false)
+    const onResetButtonClick = () => {
+        dispatch(setCounterAC(startValue))
+        dispatch(setIncButtonAC(false))
     }
-
 
     return (
         <div className="App">
             <div className="settingsBlock">
-                <Settings maxValueTitle={maxValueTitle}
-                          startValueTitle={startValueTitle}
+                <Settings maxValueTitle={BUTTONS_TITLES.MAX_VALUE_TITLE}
+                          startValueTitle={BUTTONS_TITLES.START_VALUE_TITLE}
                           maxValue={maxValue}
-                          minValue={minValue}
+                          startValue={startValue}
                           changeMaxValue={changeMaxValue}
-                          changeMinValue={changeMinValue}
-
+                          changeStartValue={changeStartValue}
                 />
                 <div className="buttons">
-                    <Button title={'set'}
-                            disabled={settingsButtonDisabled}
-                            execFunc={set}
+                    <Button title={BUTTONS_TITLES.SET_TITLE}
+                            disabled={setButton}
+                            execFunc={onSetButtonClick}
                     />
                 </div>
             </div>
             <div className="counterBlock">
                 <Counter counter={counter}
                          maxValue={maxValue}
-                         minValue={minValue}
-                         error={error}
-
+                         minValue={startValue}
+                         error={errorValue}
                 />
                 <div className="buttons">
-                    <Button title={'inc'} disabled={incDisabled} execFunc={increment}/>
-                    <Button title={'reset'} disabled={resetDisabled} execFunc={reset}/>
+                    <Button title={BUTTONS_TITLES.INC_TITLE} disabled={incButton} execFunc={onIncButtonClick}/>
+                    <Button title={BUTTONS_TITLES.RESET_TITLE} disabled={resetButton} execFunc={onResetButtonClick}/>
                 </div>
             </div>
-
         </div>
     );
 }
-
-export default App;

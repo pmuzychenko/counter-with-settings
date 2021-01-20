@@ -6,20 +6,15 @@ type PropsType = {
     maxValueTitle: string
     startValueTitle: string
     maxValue: number
-    minValue: number
+    startValue: number
     changeMaxValue: (value: number) => void
-    changeMinValue: (value: number) => void
+    changeStartValue: (value: number) => void
 }
 
-function Settings(props: PropsType) {
+export const Settings = (props: PropsType) => {
 
-    const setMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        props.changeMaxValue(+e.currentTarget.value)
-    }
-    const setMinValue = (e: ChangeEvent<HTMLInputElement>) => {
-        props.changeMinValue(+e.currentTarget.value)
-    }
-
+    const setMaxValue = (e: ChangeEvent<HTMLInputElement>) => props.changeMaxValue(e.currentTarget.valueAsNumber)
+    const setMinValue = (e: ChangeEvent<HTMLInputElement>) => props.changeStartValue(+e.currentTarget.valueAsNumber)
 
     return (
         <div className="settings">
@@ -27,17 +22,14 @@ function Settings(props: PropsType) {
                 <span> {props.maxValueTitle} </span>
                 <input type="number" value={props.maxValue}
                        onChange={setMaxValue}
-
                 />
             </div>
             <div className={"startValue"}>
                 <span>{props.startValueTitle} </span>
-                <input type="number" value={props.minValue}
+                <input type="number" value={props.startValue}
                        onChange={setMinValue}
                 />
             </div>
         </div>
     );
 }
-
-export default Settings;
